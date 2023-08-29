@@ -1,7 +1,11 @@
 package com.exemple.restspring;
 
+import com.exemple.restspring.model.Post;
+import com.exemple.restspring.service.PostService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Application {
@@ -10,9 +14,9 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-//	@Bean
-//	CommandLineRunner commandLineRunner(PostRepository repository) {
-//		return args -> repository.save(new Post("Hello World!","My first blog post!"));
-//	}
+	@Bean
+    CommandLineRunner commandLineRunner(PostService service) {
+		return args -> service.save(new Post("Hello World!","My first blog post!"));
+	}
 
 }
